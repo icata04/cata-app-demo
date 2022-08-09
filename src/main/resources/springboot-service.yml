@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: springboot-postgres-k8s
+  labels:
+    name: springboot-postgres-k8s
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+
+  selector:
+    app: springboot-postgres-k8s
+  type: LoadBalancer
