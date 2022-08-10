@@ -1,14 +1,16 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: springboot-postgres-k8s
+  name: springboot-service
   labels:
-    name: springboot-postgres-k8s
+    name: springboot-service
+    app: cata-app
 spec:
+  type: LoadBalancer
   ports:
     - port: 8080
       targetPort: 8080
 
   selector:
-    app: springboot-postgres-k8s
-  type: LoadBalancer
+    name: springboot-pod
+    app: cata-app

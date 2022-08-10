@@ -1,19 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-postgres-k8s
+  name: springboot-deploy
+  labels:
+    name: springboot-deploy
+    app: cata-app
 spec:
   selector:
     matchLabels:
-      app: springboot-postgres-k8s
+      app: cata-app
+      name: springboot-pod
   replicas: 3
   template:
     metadata:
+      name: springboot-pod
       labels:
-        app: springboot-postgres-k8s
+        name: springboot-pod
+        app: cata-app
     spec:
       containers:
-        - name: springboot-postgres-k8s
+        - name: cata-app
           image: icata04/spring-boot-postgresql:1.1
           ports:
             - containerPort: 8080
