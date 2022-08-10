@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/db
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
+    username: {POSTGRES_USER}
+    password: {POSTGRES_PASSWORD}
     hikari:
       initialization-fail-timeout: 0
 jpa:

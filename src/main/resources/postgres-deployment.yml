@@ -26,8 +26,17 @@ spec:
             - containerPort: 5432
           env:
             - name: POSTGRES_USER
-              value: "postgres"
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: postgres_user
             - name: POSTGRES_PASSWORD
-              value: "postgres"
-            - name: POSTGRES_DB
-              value: "db"
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: postgres_password
+            - name: POSTGRES_DB # Setting Database Name from a 'ConfigMap'
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf
+                  key: name
